@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직관 마스터 - 필수 준비물 체크리스트</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f1f5f9; font-family: sans-serif; color: #334155; }
+
+        header {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e2e8f0;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden; 
+        }
+        header .logo { float: left; width: 200px; height: 50px; }
+        header .logo img { width: 100%; height: 100%; }
+        header .user-menu { float: right; font-size: 14px; color: #64748b; line-height: 50px; }
+
+        nav { background-color: #1e3a8a; text-align: center; height: 45px; }
+        nav ul { list-style: none; max-width: 1200px; margin: 0 auto; font-size: 0; }
+        nav ul li { display: inline-block; margin: 0 20px; line-height: 45px; }
+        nav ul li a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 16px; display: block; }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .sub-content-box {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+        }
+
+        .sub-content-box h2 {
+            color: #1e3a8a; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #1e3a8a; 
+            padding-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .checklist-section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0f172a;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .checklist-wrapper {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 20px 25px;
+        }
+
+        .checklist-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .checklist-item.last {
+            margin-bottom: 0;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+
+        .checklist-item label {
+            vertical-align: middle;
+            color: #334155;
+        }
+
+        .product-grid-container {
+            width: 100%;
+            overflow: hidden; 
+            margin-top: 20px;
+        }
+
+        .product-card {
+            float: left;
+            width: 23%; 
+            margin-right: 2.6%;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product-card.last-item {
+            margin-right: 0;
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 150px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .product-desc {
+            font-size: 12px;
+            color: #64748b;
+            text-align: left;
+            margin-bottom: 10px;
+            height: 36px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #dc2626;
+            text-align: left;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 8px;
+        }
+
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #cbd5e1;
+            padding: 25px 40px;
+            max-width: 1200px;
+            margin: 50px auto 0 auto;
+            overflow: hidden;
+        }
+        footer .footer-logo { float: left; font-weight: bold; color: #64748b; line-height: 40px; }
+        footer .footer-info { float: left; width: 60%; font-size: 14px; color: #64748b; text-align: center; line-height: 1.6; }
+        footer .footer-sns { float: right; margin-top: 5px; }
+        footer .footer-sns img { width: 30px; height: 30px; border-radius: 4px; margin-left: 10px; }
+
+        @media (max-width: 768px) {
+            header { text-align: center; padding: 15px 20px; }
+            header .logo { float: none; margin: 0 auto 10px auto; display: block; width: 180px; height: 45px; }
+            header .user-menu { float: none; display: block; line-height: 1.5; text-align: center; font-size: 12px; }
+
+            nav { height: 40px; padding: 0; }
+            nav ul { width: 100%; display: block; }
+            nav ul li { 
+                display: inline-block; 
+                width: 20%; 
+                margin: 0; 
+                line-height: 40px; 
+                text-align: center;
+            }
+            nav ul li a { font-size: 11px; font-weight: bold; padding: 0; }
+
+            main { padding: 0 15px; margin: 20px auto; }
+            .sub-content-box { padding: 20px; }
+
+            .product-card { width: 48%; margin-right: 4%; }
+            .product-card:nth-child(2n) { margin-right: 0 !important; }
+            .product-card.last-item { margin-right: 4%; }
+
+            footer { text-align: center; padding: 20px; overflow: hidden; }
+            footer .footer-logo, footer .footer-info, footer .footer-sns { float: none; width: 100%; margin: 10px 0; display: block; }
+            footer .footer-sns { text-align: center; }
+
+            footer .footer-sns img { 
+                float: none;
+                display: inline-block;
+                width: 30px !important;  
+                height: 30px !important; 
+                margin: 0 5px;           
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/header_logo.png" title="직관 마스터 로고">
+            </a>
+        </div>
+        <div class="user-menu">로그인 | 회원 가입 | 마이페이지 | 제보하기</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="map.html">전국 구장 맵</a></li>
+            <li><a href="food.html">구장별 먹거리</a></li>
+            <li><a href="checklist.html">체크리스트</a></li>
+            <li><a href="cheer.html">응원 문화</a></li>
+            <li><a href="diary.html">직관일기</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        
+        <section class="sub-content-box">
+            <h2>🎒 완벽한 직관을 위한 필수 체크리스트</h2>
+            <p style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 10px;">
+                야구장으로 출발하기 전, 빠진 물건이 없는지 최종 점검해보세요!<br>
+                완벽한 준비가 완벽한 직관을 만듭니다.
+            </p>
+
+            <div class="checklist-section-title">🚨 필수 준비물 (이건 절대 잊지 마세요!)</div>
+            <div class="checklist-wrapper">
+                <div class="checklist-item">
+                    <input type="checkbox" id="p1">
+                    <label for="p1"><strong>티켓(모바일 또는 종이) :</strong> 가장 중요합니다! 현장 발권이라면 예매 번호나 신분증을 꼭 챙기시고, 모바일 티켓은 미리 캡처해 두면 입장할 때 편리합니다.</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p2">
+                    <label for="p2"><strong>구단 유니폼 및 응원봉 :</strong> 직관의 꽃은 응원이죠! 소속 구단의 유니폼 & 응원 도구를 미리 가방에 챙겨두세요.</label>
+                </div>
+                <div class="checklist-item last">
+                    <input type="checkbox" id="p3">
+                    <label for="p3"><strong>신용카드 및 신분증 :</strong> 구단 내 먹거리 구매나 주류 구매 시 성인 인증을 위해 꼭 필요합니다.</label>
+                </div>
+            </div>
+
+            <div class="checklist-section-title">☀️ 날씨 대비 물품 (쾌적한 관람을 위한 팁)</div>
+            <div class="checklist-wrapper">
+                <div class="checklist-item">
+                    <input type="checkbox" id="w1">
+                    <label for="w1"><strong>모자, 선글라스, 선크림 :</strong> 낮 경기나 개방형 구장의 3루 좌석은 햇빛이 강합니다. 자외선 차단 준비는 필수입니다.</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="w2">
+                    <label for="w2"><strong>얇은 겉옷 또는 담요 :</strong> 봄, 가을 야간 경기는 해가 지면 바람이 불어 급격히 쌀쌀해집니다. 체온 유지를 위한 외투를 꼭 챙기세요.</label>
+                </div>
+                <div class="checklist-item last">
+                    <input type="checkbox" id="w3">
+                    <label for="w3"><strong>휴대용 미니 선풍기 & 쿨패치 :</strong> 한여름 직관 시 땀을 식혀줄 필수 생존 아이템입니다.</label>
+                </div>
+            </div>
+
+            <div class="checklist-section-title">💡 있으면 무조건 유용한 꿀템</div>
+            <div class="checklist-wrapper">
+                <div class="checklist-item last">
+                    <input type="checkbox" id="g1">
+                    <label for="g1"><strong>물티슈 및 보조배터리 :</strong> 경기장에서 음식을 먹다 보면 손이나 자리에 묻기 쉬워 물티슈가 아주 유용합니다. 또한 응원가 가사를 보거나 사진을 찍다 보면 배터리가 빨리 닳으니 보조배터리도 챙기세요.</label>
+                </div>
+            </div>
+        </section>
+
+        <section class="sub-content-box">
+            <h2>🏪 직관 마스터의 추천템 (할인가로 구매 가능)</h2>
+            <div class="product-grid-container">
+                
+                <div class="product-card">
+                    <div class="product-img-box" style="background-image: url('img/checklist_1.jpg');"></div>
+                    <div class="product-name"> 손풍기</div>
+                    <div class="product-desc">강력한 3단 바람! 경기가 끝날 때까지 버티는 배터리</div>
+                    <div class="product-price">30,000원</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-box" style="background-image: url('img/checklist_2.jpg');"></div>
+                    <div class="product-name">아이스 냉감 쿨패치</div>
+                    <div class="product-desc">목덜미 부착 즉시 급속 냉각! 구단 별 디자인 존재!</div>
+                    <div class="product-price">27,500원</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-box" style="background-image: url('img/checklist_3.jpeg');"></div>
+                    <div class="product-name">폴딩 박스</div>
+                    <div class="product-desc">음식을 다리에 놓지 말고, 박스에 올려서 드세요!</div>
+                    <div class="product-price">5,000원</div>
+                </div>
+
+                <div class="product-card last-item">
+                    <div class="product-img-box" style="background-image: url('img/checklist_4.jpg');"></div>
+                    <div class="product-name">초고속 보조배터리</div>
+                    <div class="product-desc">대용량 10000mAh, 가벼운 무게로 들고다니기 편함 !!</div>
+                    <div class="product-price">19,900원</div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">직관 마스터 ⚾</div>
+        <div class="footer-info">
+            서울시 송파구 새말로 8길 / TEL : 010-0000-0000 <br> 
+            이메일 : 00000@master.com <br> 
+            <span style="color: #94a3b8;">© 2026 직관마스터. All rights reserved.</span>
+        </div>
+        <div class="footer-sns">
+            <img src="img/T.png">
+            <img src="img/B.png">
+            <img src="img/F.png">
+        </div>
+    </footer>
+
+</body>
+</html>

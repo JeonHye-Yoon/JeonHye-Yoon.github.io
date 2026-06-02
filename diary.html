@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직관 마스터 - 나의 직관 일기</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f1f5f9; font-family: sans-serif; color: #334155; }
+
+        header { background-color: #ffffff; padding: 20px 40px; border-bottom: 1px solid #e2e8f0; max-width: 1200px; margin: 0 auto; overflow: hidden; }
+        header .logo { float: left; width: 200px; height: 50px; }
+        header .logo img { width: 100%; height: 100%; }
+        header .user-menu { float: right; font-size: 14px; color: #64748b; line-height: 50px; }
+
+        nav { background-color: #1e3a8a; text-align: center; height: 45px; }
+        nav ul { list-style: none; max-width: 1200px; margin: 0 auto; font-size: 0; }
+        nav ul li { display: inline-block; margin: 0 20px; line-height: 45px; }
+        nav ul li a { color: #ffffff; text-decoration: none; font-weight: bold; font-size: 16px; display: block; }
+
+        footer { background-color: #ffffff; border-top: 1px solid #cbd5e1; padding: 25px 40px; max-width: 1200px; margin: 50px auto 0 auto; overflow: hidden; }
+        footer .footer-logo { float: left; font-weight: bold; color: #64748b; line-height: 40px; }
+        footer .footer-info { float: left; width: 60%; font-size: 14px; color: #64748b; text-align: center; line-height: 1.6; }
+        footer .footer-sns { float: right; margin-top: 5px; }
+        footer .footer-sns img { width: 30px; height: 30px; border-radius: 4px; margin-left: 10px; }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .sub-content-box {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+        }
+
+        .sub-content-box h2 {
+            color: #1e3a8a; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #1e3a8a; 
+            padding-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .summary-container { width: 100%; overflow: hidden; margin-top: 15px; }
+        .summary-card { float: left; width: 23%; margin-right: 2.6%; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 20px; text-align: center; }
+        .summary-card.last { margin-right: 0; }
+        .summary-card p { font-size: 14px; color: #64748b; margin-bottom: 5px; }
+        .summary-card h3 { font-size: 24px; color: #1e3a8a; font-weight: bold; }
+
+        .diary-main-wrapper { width: 100%; overflow: hidden; }
+
+        .left-profile-area {
+            float: left;
+            width: 25%;
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px; 
+        }
+
+        .diary-write-card {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .diary-write-card h2 {
+            font-size: 18px;
+            border-bottom: 2px solid #1e3a8a;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            color: #334155;
+            background-color: #f8fafc;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: none; 
+            line-height: 1.6;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #1e3a8a;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .right-diary-area {
+            float: right;
+            width: 72%;
+        }
+
+        .diary-card { background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 25px; margin-bottom: 25px; overflow: hidden; }
+        .diary-content-area { float: left; width: 68%; }
+        .diary-meta-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; table-layout: fixed; }
+        .diary-meta-table th, .diary-meta-table td { border: 1px solid #e2e8f0; padding: 8px 10px; font-size: 13px; text-align: left; word-break: keep-all; }
+        .diary-meta-table th { background-color: #f1f5f9; color: #475569; width: 18%; font-weight: bold; }
+
+        .result-badge { display: inline-block; padding: 2px 6px; font-size: 11px; font-weight: bold; border-radius: 4px; color: #ffffff; }
+        .win { background-color: #dc2626; }
+        .lose { background-color: #2563eb; }
+        .diary-text { font-size: 14px; color: #334155; line-height: 1.7; }
+
+        .diary-img-box {
+            float: right;
+            width: 200px;
+            height: 130px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            background-size: cover;
+            background-position: center;
+            background-color: #cbd5e1;
+        }
+
+        @media (max-width: 768px) {
+            header { text-align: center; padding: 15px 20px; }
+            header .logo { float: none; margin: 0 auto 10px auto; display: block; width: 180px; height: 45px; }
+            header .user-menu { float: none; display: block; line-height: 1.5; text-align: center; font-size: 12px; }
+
+            nav { height: 40px; padding: 0; }
+            nav ul { width: 100%; display: block; }
+            nav ul li { display: inline-block; width: 20%; margin: 0; line-height: 40px; text-align: center; }
+            nav ul li a { font-size: 11px; font-weight: bold; padding: 0; }
+
+            main { padding: 0 15px; margin: 20px auto; }
+            .sub-content-box { padding: 20px; }
+
+            .summary-card { width: 48%; margin-right: 4%; margin-bottom: 15px; }
+            .summary-card:nth-child(2n) { margin-right: 0; }
+
+            .left-profile-area { float: none; width: 100%; }
+            .profile-card { margin-bottom: 20px; }
+            .diary-write-card { margin-bottom: 25px; } 
+            .right-diary-area { float: none; width: 100%; }
+            
+            .diary-content-area { float: none; width: 100%; margin-bottom: 15px; }
+            .diary-img-box { float: none; width: 100%; height: 300px; }
+
+            .diary-meta-table, .diary-meta-table tbody, .diary-meta-table tr, .diary-meta-table th, .diary-meta-table td { display: block; width: 100% !important; }
+            .diary-meta-table tr { margin-bottom: -1px; }
+            .diary-meta-table th { background-color: #e2e8f0; padding: 6px 10px; }
+
+            footer { text-align: center; padding: 20px; }
+            footer .footer-logo, footer .footer-info, footer .footer-sns { float: none; width: 100%; margin: 10px 0; display: block; }
+            footer .footer-sns { text-align: center; }
+            footer .footer-sns img { float: none; display: inline-block; width: 30px !important; height: 30px !important; margin: 0 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/header_logo.png" title="직관 마스터 로고">
+            </a>
+        </div>
+        <div class="user-menu">로그인 | 회원 가입 | 마이페이지 | 제보하기</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="map.html">전국 구장 맵</a></li>
+            <li><a href="food.html">구장별 먹거리</a></li>
+            <li><a href="checklist.html">체크리스트</a></li>
+            <li><a href="cheer.html">응원 문화</a></li>
+            <li><a href="diary.html">직관일기</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="sub-content-box">
+            <h2>📊 나의 2026 직관 데이터 요약</h2>
+            <div class="summary-container">
+                <div class="summary-card">
+                    <p>총 직관 횟수</p>
+                    <h3>4회</h3>
+                </div>
+                <div class="summary-card">
+                    <p>승리</p>
+                    <h3 style="color: #dc2626;">2승</h3>
+                </div>
+                <div class="summary-card">
+                    <p>패배</p>
+                    <h3 style="color: #2563eb;">2패</h3>
+                </div>
+                <div class="summary-card last">
+                    <p>직관 승률</p>
+                    <h3>50%</h3>
+                </div>
+            </div>
+        </section>
+
+        <div class="diary-main-wrapper">
+            <div class="left-profile-area">
+                <div class="profile-card">
+                    <h2 style="color: #1e3a8a; font-size: 18px; margin-bottom: 20px; border-bottom: 2px solid #1e3a8a; padding-bottom: 8px; text-align: center;">👤 내 프로필</h2>
+                    <div style="width: 100px; height: 100px; background-color: #e2e8f0; border-radius: 50%; margin: 0 auto 15px auto; background-image: url('img/diary_5.jpeg'); background-size: cover; background-position: center;"></div>
+                    <div style="text-align: left; background-color: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                        <p style="font-size: 14px; margin-bottom: 8px; color: #475569;"><strong>닉네임 :</strong> 잼윤이</p>
+                        <p style="font-size: 14px; margin-bottom: 8px; color: #475569;"><strong>선호 구단 :</strong> KIA 타이거즈</p>
+                        <p style="font-size: 14px; color: #475569;"><strong>직관 횟수 :</strong> 올해 총 4회</p>
+                    </div>
+                </div>
+
+                <div class="diary-write-card">
+                    <h2>📝 일기 작성하기</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>방문 일자</label>
+                            <input type="date">
+                        </div>
+                        <div class="form-group">
+                            <label>방문 구장</label>
+                            <select>
+                                <option>서울 잠실 야구장</option>
+                                <option>고척 스카이돔</option>
+                                <option>인천 SSG 랜더스필드</option>
+                                <option>수원 KT 위즈파크</option>
+                                <option>대전 한화생명볼파크</option>
+                                <option>광주 기아챔피언스필드</option>
+                                <option>대구 삼성라이온즈파크</option>
+                                <option>창원 NC파크</option>
+                                <option>부산 사직야구장</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="overflow: hidden; margin-bottom: 12px;">
+                            <label style="display: block; margin-bottom: 5px;">대진 정보</label>
+                            
+                            <div style="float: left; width: 45%;">
+                                <select>
+                                    <option value="">원정 팀 선택</option>
+                                    <option>KIA</option><option>LG</option><option>삼성</option>
+                                    <option>두산</option><option>키움</option><option>SSG</option>
+                                    <option>KT</option><option>한화</option><option>NC</option>
+                                    <option>롯데</option>
+                                </select>
+                            </div>
+
+                            <div style="float: left; width: 10%; text-align: center; line-height: 34px; font-weight: bold; color: #64748b; font-size: 14px;">
+                                VS
+                            </div>
+
+                            <div style="float: right; width: 45%;">
+                                <select>
+                                    <option value="">홈 팀 선택</option>
+                                    <option>KIA</option><option>LG</option><option>삼성</option>
+                                    <option>두산</option><option>키움</option><option>SSG</option>
+                                    <option>KT</option><option>한화</option><option>NC</option>
+                                    <option>롯데</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>경기 결과</label>
+                            <select>
+                                <option>승리</option>
+                                <option>패배</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>사진 첨부</label>
+                            <input type="file">
+                        </div>
+                        <div class="form-group">
+                            <label>직관 내용</label>
+                            <textarea placeholder="오늘의 생생한 직관 후기를 기록해보세요!"></textarea>
+                        </div>
+                        <button type="button" class="btn-submit">등록하기</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="right-diary-area">
+                
+                <div class="diary-card">
+                    <div class="diary-content-area">
+                        <table class="diary-meta-table">
+                            <tr>
+                                <th>📅 방문 일자</th>
+                                <td>2026년 4월 10일 (금)</td>
+                                <th>🏟️ 방문 구장</th>
+                                <td>고척 스카이돔</td>
+                            </tr>
+                            <tr>
+                                <th>⚾ 대진 정보</th>
+                                <td>롯데 VS 키움</td>
+                                <th>🔢 경기 결과</th>
+                                <td><span class="result-badge lose">패배</span> 3 : 1 </td>
+                            </tr>
+                        </table>
+                        <div class="diary-text">
+                            오늘은 야구 동아리에서 친해진 후배들과 우리팀 경기는 아니지만, 후배 한명이 응원하는 팀이라 같이 다녀왔다 !! 고척 스카이돔은 처음인데, 진짜 쾌적하고,, 응원하면서 먹은 피자와 치킨, 만두가 최고 !!! 시구 온 조이도 봤다 !!
+                        </div>
+                    </div>
+                    <div class="diary-img-box" style="background-image: url('img/diary_1.jpg');"></div>
+                </div>
+
+                <div class="diary-card">
+                    <div class="diary-content-area">
+                        <table class="diary-meta-table">
+                            <tr>
+                                <th>📅 방문 일자</th>
+                                <td>2026년 5월 19일 (화)</td>
+                                <th>🏟️ 방문 구장</th>
+                                <td>서울 잠실 야구장</td>
+                            </tr>
+                            <tr>
+                                <th>⚾ 대진 정보</th>
+                                <td>NC VS 두산</td>
+                                <th>🔢 경기 결과</th>
+                                <td><span class="result-badge win">승리</span> 3 : 9 </td>
+                            </tr>
+                        </table>
+                        <div class="diary-text">
+                            오늘도 야구 직관 동아리에서, 부원들과 단체로 다녀왔다 !! 이번에 친해진 동생과 옆자리에서 신나게 두산 응원가를 부르며 봤다. 쫄면과 군만두도 먹으며 시원한 음료와 함께했다 ! 우리팀이 아니여도 응원가를 부르며 야구를 보는건 즐거워!
+                        </div>
+                    </div>
+                    <div class="diary-img-box" style="background-image: url('img/diary_2.jpg');"></div>
+                </div>
+
+                <div class="diary-card">
+                    <div class="diary-content-area">
+                        <table class="diary-meta-table">
+                            <tr>
+                                <th>📅 방문 일자</th>
+                                <td>2026년 5월 26일 (화)</td>
+                                <th>🏟️ 방문 구장</th>
+                                <td>고척 스카이돔</td>
+                            </tr>
+                            <tr>
+                                <th>⚾ 대진 정보</th>
+                                <td>KIA VS 키움</td>
+                                <th>🔢 경기 결과</th>
+                                <td><span class="result-badge win">승리</span> 5 : 2 </td>
+                            </tr>
+                        </table>
+                        <div class="diary-text">
+                            오랜만에 고척에 또 왔다 !! 오늘은 친구와 내 응원팀인 기아를 응원했다 !! 더운 날씨에 쾌적한 환경이라 좋고, 맛있는 음식 먹으니 기분이 좋아진다. 그래도 누가 뭐래도 이기는 경기가 최고인듯 하다 !!
+                        </div>
+                    </div>
+                    <div class="diary-img-box" style="background-image: url('img/diary_3.jpg');"></div>
+                </div>
+
+                <div class="diary-card">
+                    <div class="diary-content-area">
+                        <table class="diary-meta-table">
+                            <tr>
+                                <th>📅 방문 일자</th>
+                                <td>2026년 5월 30일 (토)</td>
+                                <th>🏟️ 방문 구장</th>
+                                <td>서울 잠실 야구장</td>
+                            </tr>
+                            <tr>
+                                <th>⚾ 대진 정보</th>
+                                <td>KIA VS LG</td>
+                                <th>🔢 경기 결과</th>
+                                <td><span class="result-badge lose">패배</span> 1 : 3 </td>
+                            </tr>
+                        </table>
+                        <div class="diary-text">
+                            이기는 날이 있으면,, 지는 날도 있는 법.. 오늘은 뭐 작성하고 싶지 않네요 ...
+                        </div>
+                    </div>
+                    <div class="diary-img-box" style="background-image: url('img/diary_4.jpg');"></div>
+                </div>
+
+            </div> 
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-logo">직관 마스터 ⚾</div>
+        <div class="footer-info">
+            서울시 송파구 새말로 8길 / TEL : 010-0000-0000 <br> 
+            이메일 : 00000@master.com <br> 
+            <span style="color: #94a3b8;">© 2026 직관마스터. All rights reserved.</span>
+        </div>
+        <div class="footer-sns">
+            <img src="img/T.png">
+            <img src="img/B.png">
+            <img src="img/F.png">
+        </div>
+    </footer>
+
+</body>
+</html>
